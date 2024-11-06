@@ -1,0 +1,18 @@
+pip install pyspark
+from pyspark.sql import SparkSession 
+from pyspark.sql.functions import col, expr, mean, corr
+spark = SparkSession.builder.appName("Ventas").getOrCreate()
+spark.stop()
+spark
+df = pd.read_csv('/content/Ventas.csv')
+df = spark.read.csv("/content/ventas.csv",header=True, inferSchema=True)
+df.show()
+variable.select(mean(col("Edades")).alias("Media")).collect()[0]["Media"]
+var_mediana = variable.approxQuantile("Edades",[0.5],0.0)
+print("La mediana es:",var_mediana)
+var_moda = variable.groupBy("Costos").count().orderBy(col("count").desc()).first()
+print("la moda es:", var_moda["Costos"])
+data_var = [(3,4),(4,3),(3,2),(4,5),(3,2),(2,3), (3,4), (2,3), (5,5), (4,3), (5,2), (2,2), (2, 3), (3,4), (5,4)]
+columns_var = ["var1", "var2"]
+correlacion = variable_corr.select(corr(col("var1"),col("var2")).alias("correlacion")).collect()[0]["correlacion"]
+print("la correlacion es:",correlacion)
